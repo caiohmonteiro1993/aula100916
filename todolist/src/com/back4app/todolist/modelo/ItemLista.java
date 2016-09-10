@@ -1,10 +1,31 @@
 package com.back4app.todolist.modelo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class ItemLista {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String descricao;
 	private boolean feito;
+	@ManyToOne
+	@JoinColumn(name = "lista_id")
+	private Lista lista;
+
+	public Lista getLista() {
+		return lista;
+	}
+
+	public void setLista(Lista lista) {
+		this.lista = lista;
+	}
 
 	public Long getId() {
 		return id;
